@@ -1,0 +1,83 @@
+PS C:\Projects\students_in_springboot> git checkout -b test-branch-1
+Switched to a new branch 'test-branch-1'
+PS C:\Projects\students_in_springboot> git log
+
+    Rename properties to yaml
+
+commit c21319a86063d81ef8e3edf5305ae6c7ce1c67c6
+Author: syrymtheprofessor <syrym.cappelo@gmail.com>
+Date:   Tue Mar 5 12:53:40 2024 +0500
+
+    First commit to init
+PS C:\Projects\students_in_springboot>
+PS C:\Projects\students_in_springboot>
+PS C:\Projects\students_in_springboot> git status
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main/resources/application.yaml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test-branch-1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Projects\students_in_springboot> git commit -m "Added test-branch-1"
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main/resources/application.yaml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test-branch-1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Projects\students_in_springboot> git status
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main/resources/application.yaml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test-branch-1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Projects\students_in_springboot> git add .\test-branch-1.txt
+On branch test-branch-1
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/main/resources/application.yaml
+
+PS C:\Projects\students_in_springboot> git commit -m "Added test-branch-1"
+[test-branch-1 dc84e33] Added test-branch-1
+PS C:\Projects\students_in_springboot> git push
+fatal: The current branch test-branch-1 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin test-branch-1
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+PS C:\Projects\students_in_springboot>
+PS C:\Projects\students_in_springboot> git push --set-upstream origin test-branch-1
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 290 bytes | 290.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: Create a pull request for 'test-branch-1' on GitHub by visiting:
+remote:      https://github.com/syrymtheprofessor/spring_project_1/pull/new/test-branch-1
+remote:
+To https://github.com/syrymtheprofessor/spring_project_1.git
+ * [new branch]      test-branch-1 -> test-branch-1
+branch 'test-branch-1' set up to track 'origin/test-branch-1'.
+PS C:\Projects\students_in_springboot>
