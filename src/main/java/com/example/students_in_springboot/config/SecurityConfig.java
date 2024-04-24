@@ -2,6 +2,7 @@ package com.example.students_in_springboot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
@@ -13,14 +14,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.tags.form.AbstractHtmlElementBodyTag;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity //Чтобы работало Моделирование авторизации на уровне метода, включил её
 public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        UserDetails admin = User.builder().username("syrym").password(encoder.encode("admin")).build();
+        UserDetails admin = User.builder().username("admin").password(encoder.encode("admin")).roles("ADMIN").build();
+        UserDetails user = User.builder().username("user1").password(encoder.encode("user")).roles("USER").build();
+        UserDetails syrym = User.builder().username("syrym").password(encoder.encode("123")).roles("USER", "ADMIN").build();
 
         return new InMemoryUserDetailsManager(admin);
     }
