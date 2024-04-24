@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 /*
 @Getter
@@ -29,6 +30,10 @@ public class User {
     private LocalDate dateOfBirth;
     @Transient
     private int age;
+
+    public int get_age() {
+        return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    }
 }
 
 /*
