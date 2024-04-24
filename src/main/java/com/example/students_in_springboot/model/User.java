@@ -1,5 +1,6 @@
 package com.example.students_in_springboot.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -15,21 +16,26 @@ import java.time.LocalDate;
 но, это все можно заменить через @Data
  */
 @Data
-@Builder
-public class Student {
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private LocalDate dateOfBirth;
+    @Transient
     private int age;
 }
-
 
 /*
 @Data: Эта аннотация является составной аннотацией и включает в себя несколько других аннотаций,
 таких как @Getter, @Setter, @ToString, @EqualsAndHashCode и @NoArgsConstructor.
 
-@Getter и @Setter генерируют методы доступа (getter и setter) для всех полей класса Student.
+@Getter и @Setter генерируют методы доступа (getter и setter) для всех полей класса User.
 @ToString генерирует метод toString(), который возвращает строковое представление объекта, включая все его поля.
 @EqualsAndHashCode генерирует методы equals() и hashCode(), что облегчает сравнение объектов по содержимому и
 использование их в коллекциях, таких как HashSet или HashMap.

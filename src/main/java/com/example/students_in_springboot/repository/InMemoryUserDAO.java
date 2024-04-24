@@ -1,63 +1,62 @@
 package com.example.students_in_springboot.repository;
 
-import com.example.students_in_springboot.model.Student;
+import com.example.students_in_springboot.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /*
-Почему реализация методов не прописывается в InMemoryStudentServiceImp?
+Почему реализация методов не прописывается в InMemoryUserServiceImp?
 
 Принцип разделения ответственности (Separation of Concerns) предписывает разделять бизнес-логику от доступа к данным.
 Это означает, что классы, отвечающие за бизнес-логику, и классы, отвечающие за доступ к данным,
 должны быть отделены друг от друга. Такой подход упрощает тестирование, поддержку и масштабирование приложения.
 
-В вашем случае, InMemoryStudentDAO отвечает исключительно за доступ к данным,
-а InMemoryStudentServiceImp - за бизнес-логику приложения, которая использует InMemoryStudentDAO для доступа к данным.
+В вашем случае, InMemoryUserDAO отвечает исключительно за доступ к данным,
+а InMemoryUserServiceImp - за бизнес-логику приложения, которая использует InMemoryUserDAO для доступа к данным.
 Это делает код более модульным, понятным и легко поддающимся изменениям,
 поскольку логика доступа к данным и бизнес-логика разделены и могут изменяться независимо друг от друга.
  */
 @Repository
-public class InMemoryStudentDAO {
-    private final List<Student> STUDENTS = new ArrayList<>();
+public class InMemoryUserDAO {
+    private final List<User> USERS = new ArrayList<>();
 
-    public List<Student> getAllStudents() {
-        return STUDENTS;
+    public List<User> getAllUsers() {
+        return USERS;
     }
 
-    public Student addStudent(Student student) {
-        STUDENTS.add(student);
-        return student;
+    public User addUser(User user) {
+        USERS.add(user);
+        return user;
     }
 
-    public Student getStudent(String email) {
-        return STUDENTS.stream()
+    public User getUser(String email) {
+        return USERS.stream()
                 .filter(element -> element.getEmail().equals(email))
                 .findFirst()
                 .orElse(null);
     }
 
-    public Student updateStudent(Student student) {
-        var studentIndex = IntStream.range(0, STUDENTS.size())
-                .filter(index -> STUDENTS.get(index).getEmail().equals(student.getEmail()))
+    public User updateUser(User user) {
+        var userIndex = IntStream.range(0, USERS.size())
+                .filter(index -> USERS.get(index).getEmail().equals(user.getEmail()))
                 .findFirst()
                 .orElse(-1);
 
-        if (studentIndex > -1) {
-            STUDENTS.set(studentIndex, student);
-            return student;
+        if (userIndex > -1) {
+            USERS.set(userIndex, user);
+            return user;
         }
 
         return null;
     }
 
-    public void deleteStudent(String email) {
-        var student = getStudent(email);
-        if (student != null) {
-            STUDENTS.remove(student);
+    public void deleteUser(String email) {
+        var user = getUser(email);
+        if (user != null) {
+            USERS.remove(user);
         }
     }
 }

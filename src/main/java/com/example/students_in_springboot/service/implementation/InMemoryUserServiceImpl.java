@@ -1,8 +1,8 @@
 package com.example.students_in_springboot.service.implementation;
 
-import com.example.students_in_springboot.model.Student;
-import com.example.students_in_springboot.repository.InMemoryStudentDAO;
-import com.example.students_in_springboot.service.StudentService;
+import com.example.students_in_springboot.model.User;
+import com.example.students_in_springboot.repository.InMemoryUserDAO;
+import com.example.students_in_springboot.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,31 +17,32 @@ import java.util.List;
  */
 @Service
 @AllArgsConstructor
-public class InMemoryStudentServiceImp implements StudentService{
-    private final InMemoryStudentDAO repository; //В моем случае вот экземпляр этот класса
+public class InMemoryUserServiceImpl implements UserService {
+    private final InMemoryUserDAO repository; //В моем случае вот экземпляр этот класса
 
     @Override
-    public List<Student> getAllStudents() {
-        return repository.getAllStudents();
+    public List<User> getAllUsers() {
+        return repository.getAllUsers();
     }
 
     @Override
-    public Student addStudent(Student student) {
-        return repository.addStudent(student);
+    public User addUser(User user) {
+        return repository.addUser(user);
     }
 
     @Override
-    public Student getStudent(String email) {
-        return repository.getStudent(email);
+    public User getUser(String email) {
+        return repository.getUser(email);
     }
 
     @Override
-    public Student updateStudent(Student student) {
-        return repository.updateStudent(student);
+    public User updateUser(User user) {
+        return repository.updateUser(user);
     }
 
     @Override
-    public void deleteStudent(String email) {
-        repository.deleteStudent(email);
+    public void deleteUser(String email) {
+        repository.deleteUser(email);
     }
+
 }
