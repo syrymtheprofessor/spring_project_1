@@ -6,6 +6,7 @@ import com.example.students_in_springboot.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @Primary //UserRepository is now primary, if shutdowns, then DAO takes place. Удобно крч
 public class UserServiceImpl implements UserService {
-    private final UserRepository repository;
+    private UserRepository repository;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
 

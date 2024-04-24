@@ -21,13 +21,14 @@ import java.time.Period;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Поддержка Auto-Increment в MySQL/PostgreSQL. Sequence для Oracle
+    private Long id;
     private String firstName;
     private String lastName;
     @Column(unique = true)
     private String email;
-
+    private String password;
+    private String roles;
     private LocalDate dateOfBirth;
     @Transient
     private int age;

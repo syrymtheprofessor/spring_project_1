@@ -19,8 +19,7 @@ public class UserController {
         return service.getAllUsers();
     }
 
-    @PostMapping("add_user")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PostMapping("/add_user")
     public User addUser(@RequestBody User user) {
         return service.addUser(user);
     }
@@ -31,12 +30,14 @@ public class UserController {
         return service.getUser(email);
     }
 
-    @PutMapping("update_user")
+    @PutMapping("/update_user")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public User updateUser(@RequestBody User user) {
         return service.updateUser(user);
     }
 
-    @DeleteMapping("delete_user/{email}")
+    @DeleteMapping("/delete_user/{email}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteUser(@PathVariable String email) { //@PathVariable не надо писать в скобки, так как имя такое же
         service.deleteUser(email);
     }
